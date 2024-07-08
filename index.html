@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address Fetcher</title>
+    <style>
+        body {
+            background-color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        #ip {
+            background-color: #e0e0e0;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        #ip::before {
+            content: "Your IP Address: ";
+            font-weight: bold;
+        }
+
+        .container {
+            background-color: #e0e0e0;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your IP Address</h1>
+        <div id="ip">Fetching your IP address...</div>
+    </div>
+
+    <script>
+        fetch('https://api.ipify.org?format=json')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                document.getElementById('ip').innerText = data.ip;
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+    </script>
+</body>
+</html>
